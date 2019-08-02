@@ -1,4 +1,6 @@
-# e_paper1. build environment: ubuntu 16.04 (64 bit)
+# e_paper
+
+1. build environment: ubuntu 16.04 (64 bit)
 
 2. "make" to compile
 "make clean" to clean
