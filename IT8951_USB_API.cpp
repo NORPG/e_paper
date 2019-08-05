@@ -7,6 +7,7 @@
 // 
 // Author: Eric Su
 // **************************************************************************
+
 #include "stdafx.h"
 #include "winbase.h"
 #include "Ntddscsi.h"
