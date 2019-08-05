@@ -1,6 +1,3 @@
-
-
-
 #include "IT8951_USB.h"
 #include <math.h>
 #include <stdio.h>

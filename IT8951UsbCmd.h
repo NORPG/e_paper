@@ -117,13 +117,16 @@ typedef struct _TSPI_CMD_ARG_DATA {
     int iDRAMAddress;
     int iLength;		/*Byte count */
 } TSPI_CMD_ARG_DATA;
+
 typedef TSPI_CMD_ARG_DATA TSPICmdArgData;
 typedef TSPICmdArgData *LPSPICmdArgData;
 //---------------------------------------------------------------------------
+
 typedef struct _TSPI_CMD_ARG_ERASE_DATA {
     int iSPIAddress;
     int iLength;		/*Byte count */
 } TSPI_CMD_ARG_ERASE_DATA;
+
 typedef TSPI_CMD_ARG_ERASE_DATA TSPICmdArgEraseData;
 typedef TSPICmdArgEraseData *LPSPICmdArgEraseData;
 
