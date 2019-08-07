@@ -5,22 +5,22 @@
 #include <scsi/sg.h>
 #include <sys/ioctl.h>
 
-#define SENSE_LEN		(256)
-#define BLOCK_LEN		(32)
-#define SCSI_TIMEOUT	(50000)
+#define SENSE_LEN                       (256)
+#define BLOCK_LEN                       (32)
+#define SCSI_TIMEOUT                    (50000)
 
 #define SPT_BUF_SIZE  	(60*1024)	//(2048)
 
-#define IT8951_USB_INQUIRY						(0x12)
-#define IT8951_USB_OP_GET_SYS				(0x80)
-#define IT8951_USB_OP_READ_MEM				(0x81)
-#define IT8951_USB_OP_WRITE_MEM			(0x82)
-#define IT8951_USB_OP_READ_REG				(0x83)
-#define IT8951_USB_OP_WRITE_REG			(0x84)
-#define IT8951_USB_OP_DPY_AREA				(0x94)
-#define IT8951_USB_OP_LD_IMG_AREA			(0xA2)
-#define IT8951_USB_OP_FSET_TEMP			(0xA4)
-#define IT8951_USB_OP_FAST_WRITE_MEM	(0xA5)
+#define IT8951_USB_INQUIRY              (0x12)
+#define IT8951_USB_OP_GET_SYS           (0x80)
+#define IT8951_USB_OP_READ_MEM          (0x81)
+#define IT8951_USB_OP_WRITE_MEM		(0x82)
+#define IT8951_USB_OP_READ_REG          (0x83)
+#define IT8951_USB_OP_WRITE_REG         (0x84)
+#define IT8951_USB_OP_DPY_AREA          (0x94)
+#define IT8951_USB_OP_LD_IMG_AREA       (0xA2)
+#define IT8951_USB_OP_FSET_TEMP         (0xA4)
+#define IT8951_USB_OP_FAST_WRITE_MEM    (0xA5)
 #define EN_FAST_WRITE_MEM
 
 typedef unsigned char Byte;

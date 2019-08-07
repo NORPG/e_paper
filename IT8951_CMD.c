@@ -35,8 +35,8 @@ void set_xfer_data(SG_IO_HDR * p_hdr, void *data, unsigned int length)
     }
 }
 
-void set_sense_data(SG_IO_HDR * p_hdr, unsigned char *data,
-		    unsigned int length)
+void
+set_sense_data(SG_IO_HDR * p_hdr, unsigned char *data, unsigned int length)
 {
     if (p_hdr) {
 	p_hdr->sbp = data;
@@ -98,8 +98,8 @@ int IT8951_CMD_INQ(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr)
 }
 
 // 0x80: get system information
-int IT8951_CMD_SYSTEM_INFO(int fd, int page_code, int evpd,
-			   SG_IO_HDR * p_hdr)
+int
+IT8951_CMD_SYSTEM_INFO(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr)
 {
 
     p_hdr->cmd_len = 16;
@@ -152,8 +152,9 @@ int IT8951_CMD_SYSTEM_INFO(int fd, int page_code, int evpd,
 }
 
 // 0x81: read memory
-int IT8951_CMD_READ_MEM(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
-			DWord memAddr, Word length)
+int
+IT8951_CMD_READ_MEM(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
+		    DWord memAddr, Word length)
 {
 
     p_hdr->cmd_len = 16;
@@ -206,8 +207,9 @@ int IT8951_CMD_READ_MEM(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
 }
 
 // 0x82: write memory
-int IT8951_CMD_WRITE_MEM(int fd, int page_code, int evpd,
-			 SG_IO_HDR * p_hdr, DWord memAddr, Word length)
+int
+IT8951_CMD_WRITE_MEM(int fd, int page_code, int evpd,
+		     SG_IO_HDR * p_hdr, DWord memAddr, Word length)
 {
 
     p_hdr->cmd_len = 16;
@@ -263,8 +265,9 @@ int IT8951_CMD_WRITE_MEM(int fd, int page_code, int evpd,
 }
 
 // 0x83: read register
-int IT8951_CMD_READ_REG(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
-			DWord regAddr)
+int
+IT8951_CMD_READ_REG(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
+		    DWord regAddr)
 {
 
     p_hdr->cmd_len = 16;
@@ -313,8 +316,9 @@ int IT8951_CMD_READ_REG(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
 }
 
 // 0x84: write register
-int IT8951_CMD_WRITE_REG(int fd, int page_code, int evpd,
-			 SG_IO_HDR * p_hdr, DWord regAddr)
+int
+IT8951_CMD_WRITE_REG(int fd, int page_code, int evpd,
+		     SG_IO_HDR * p_hdr, DWord regAddr)
 {
 
     p_hdr->cmd_len = 16;
@@ -431,8 +435,9 @@ int IT8951_CMD_LOAD_IMG(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr)
 }
 
 // 0xA4: set temperature
-int IT8951_CMD_SET_TEMP(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
-			Byte TempOption, Byte TempValue)
+int
+IT8951_CMD_SET_TEMP(int fd, int page_code, int evpd, SG_IO_HDR * p_hdr,
+		    Byte TempOption, Byte TempValue)
 {
 
     p_hdr->cmd_len = 16;

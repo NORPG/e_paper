@@ -5,7 +5,6 @@
 unsigned char sense_buffer[SENSE_LEN];
 unsigned char data_buffer[BLOCK_LEN * 256];
 
-SystemInfo *Sys_info;		// SystemInfo structure
 DWord gulPanelW, gulPanelH;
 
 //Byte srcW[(gulPanelW*gulPanelH)];
@@ -17,6 +16,7 @@ int evpd, page_code;
 int main(int argc, char *argv[])
 {
 
+    SystemInfo *Sys_info;	// SystemInfo structure
 
     path = argv[1];		// arg1: sg path of device
     evpd = page_code = 0;
@@ -70,7 +70,7 @@ int main(int argc, char *argv[])
        IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 0, 50, 50);//0,0=>start location
      */
     //int1(0,0);
-    for (int times = 00; times <= 99; times++) {
+    for (int times = 0; times <= 99; times++) {
 	memset((src), 0xF0, (50 * 100));
 	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 800, 600, 50, 100);	//_
 
@@ -80,46 +80,46 @@ int main(int argc, char *argv[])
 
 
 	if (timea == 0)
-	    int0(800, 600);
+	    int0(Sys_info, 800, 600);
 	else if (timea == 1)
-	    int1(800, 600);
+	    int1(Sys_info, 800, 600);
 	else if (timea == 2)
-	    int2(800, 600);
+	    int2(Sys_info, 800, 600);
 	else if (timea == 3)
-	    int3(800, 600);
+	    int3(Sys_info, 800, 600);
 	else if (timea == 4)
-	    int4(800, 600);
+	    int4(Sys_info, 800, 600);
 	else if (timea == 5)
-	    int5(800, 600);
+	    int5(Sys_info, 800, 600);
 	else if (timea == 6)
-	    int6(800, 600);
+	    int6(Sys_info, 800, 600);
 	else if (timea == 7)
-	    int7(800, 600);
+	    int7(Sys_info, 800, 600);
 	else if (timea == 8)
-	    int8(800, 600);
+	    int8(Sys_info, 800, 600);
 	else if (timea == 9)
-	    int9(800, 600);
+	    int9(Sys_info, 800, 600);
 
 	if (timeb == 0)
-	    int0(800, 650);
+	    int0(Sys_info, 800, 650);
 	else if (timeb == 1)
-	    int1(800, 650);
+	    int1(Sys_info, 800, 650);
 	else if (timeb == 2)
-	    int2(800, 650);
+	    int2(Sys_info, 800, 650);
 	else if (timeb == 3)
-	    int3(800, 650);
+	    int3(Sys_info, 800, 650);
 	else if (timeb == 4)
-	    int4(800, 650);
+	    int4(Sys_info, 800, 650);
 	else if (timeb == 5)
-	    int5(800, 650);
+	    int5(Sys_info, 800, 650);
 	else if (timeb == 6)
-	    int6(800, 650);
+	    int6(Sys_info, 800, 650);
 	else if (timeb == 7)
-	    int7(800, 650);
+	    int7(Sys_info, 800, 650);
 	else if (timeb == 8)
-	    int8(800, 650);
+	    int8(Sys_info, 800, 650);
 	else if (timeb == 9)
-	    int9(800, 650);
+	    int9(Sys_info, 800, 650);
 	IT8951_Cmd_DisplayArea(800, 600, 50, 100, 2,
 			       (Sys_info->uiImageBufBase), 1);
     }
@@ -159,7 +159,7 @@ int main(int argc, char *argv[])
     return EXIT_SUCCESS;
 }
 
-void int1(int x, int y)
+void int1(SystemInfo * Sys_info, int x, int y)
 {
     // Byte src[(1600*1200)];
     memset((src), 0x00, (30 * 4));
@@ -167,7 +167,7 @@ void int1(int x, int y)
 			     y + 23, 30, 4);
 }
 
-void int2(int x, int y)
+void int2(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
@@ -185,7 +185,7 @@ void int2(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
 }
 
-void int3(int x, int y)
+void int3(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
@@ -203,7 +203,7 @@ void int3(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
 }
 
-void int4(int x, int y)
+void int4(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
@@ -215,7 +215,7 @@ void int4(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 34, 4);	//|
 }
 
-void int5(int x, int y)
+void int5(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
@@ -233,7 +233,7 @@ void int5(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
 }
 
-void int6(int x, int y)
+void int6(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
@@ -248,7 +248,7 @@ void int6(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
 }
 
-void int7(int x, int y)
+void int7(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
@@ -260,7 +260,7 @@ void int7(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
 }
 
-void int8(int x, int y)
+void int8(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
@@ -278,7 +278,7 @@ void int8(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
 }
 
-void int9(int x, int y)
+void int9(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 30));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 26);	//_
@@ -293,7 +293,7 @@ void int9(int x, int y)
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 32, 30, 4);	//|
 }
 
-void int0(int x, int y)
+void int0(SystemInfo * Sys_info, int x, int y)
 {
     memset((src), 0x00, (4 * 26));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 26);	//_
