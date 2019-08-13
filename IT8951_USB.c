@@ -7,7 +7,6 @@ unsigned char data_buffer[BLOCK_LEN * 256];
 
 DWord gulPanelW, gulPanelH;
 
-//Byte srcW[(gulPanelW*gulPanelH)];
 Byte src[(1600 * 1200)];
 
 char *path;
@@ -21,37 +20,9 @@ int main(int argc, char *argv[])
     path = argv[1];		// arg1: sg path of device
     evpd = page_code = 0;
 
-    // 0x12: get device name
-    //IT8951_Cmd_Inquiry();
-
-
     // 0x80: get system info
     Sys_info = (SystemInfo *) malloc(sizeof(SystemInfo));
     IT8951_Cmd_SysInfo(Sys_info);
-
-
-    // 0x81: read memory
-    /*
-       Byte *revBuf = (Byte*)malloc(sizeof(Byte)*16);
-       IT8951_Cmd_MemRead(Sys_info->uiImageBufBase, 16, revBuf);
-       for(int i=0; i<16; i++){
-       printf("%d, %X\n", i, revBuf[i]);    
-       }
-     */
-
-
-    // 0x83: read register
-    /*
-       DWord revVal;
-       IT8951_Cmd_RegRead(0x1800110C, &revVal);     // panel width
-       printf("0x%X\n", revVal);    
-     */
-
-
-    // 0xA2 & 0x94: load & display
-
-    // Mode 0: initial
-    //IT8951_Cmd_DisplayArea(0, 0, gulPanelW, gulPanelH, 0, (Sys_info->uiImageBufBase), 1);
 
     // set full white
     //*******************************************************************************************
@@ -62,14 +33,6 @@ int main(int argc, char *argv[])
 			     gulPanelW, gulPanelH);
 
 
-    //partial load(200x200, 4 times) & display(400x400)
-    //Byte src[(1600*1200)];
-
-    /*
-       memset((src), 0x30, (50*50)); //0x30=>BLACK // a char 80x80
-       IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 0, 50, 50);//0,0=>start location
-     */
-    //int1(0,0);
     for (int times = 0; times <= 99; times++) {
 	memset((src), 0xF0, (50 * 100));
 	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 800, 600, 50, 100);	//_
@@ -127,27 +90,9 @@ int main(int argc, char *argv[])
 
 
 
-    //IT8951_Cmd_LoadImageArea(srcW, (Sys_info->uiImageBufBase), 0, 0, gulPanelW, gulPanelH); 
     IT8951_Cmd_DisplayArea(0, 0, gulPanelW, gulPanelH, 2,
 			   (Sys_info->uiImageBufBase), 1);
     //*********************************************************************************************/
-
-
-    // partial load(200x200, 4 times) & display(400x400)
-    //Byte src[(200*200)];
-    //memset((src), 0xF0, (200*200));
-    //IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 0, 200, 200);
-
-    //memset((src), 0x00, (200*200));
-    //IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 200, 200, 200, 200);
-
-    //memset((src), 0x30, (200*200));
-    //IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 200, 200, 200);
-
-    //memset((src), 0x80, (200*200));
-    //IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 200, 0, 200, 200);
-
-    //IT8951_Cmd_DisplayArea(0, 0, 400, 400, 2, (Sys_info->uiImageBufBase), 1);
 
     // 0xA4: temperature
     TempArg TempTest;
@@ -161,7 +106,6 @@ int main(int argc, char *argv[])
 
 void int1(SystemInfo * Sys_info, int x, int y)
 {
-    // Byte src[(1600*1200)];
     memset((src), 0x00, (30 * 4));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10,
 			     y + 23, 30, 4);

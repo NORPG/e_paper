@@ -45,13 +45,11 @@ DWORD IT8951SoftwareResetAPI();
 
 void IT8951WaitDpyReady();
 
-
 extern HANDLE hDev;
 
 extern BYTE gSPTDataBuf[SPT_BUF_SIZE + 1024];
 
 extern DWORD gulPanelW;
 extern DWORD gulPanelH;
-
 
 #endif				//}__IT8951_USB_API___
