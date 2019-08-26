@@ -27,9 +27,8 @@ int main(int argc, char *argv[])
     // set full white
     //*******************************************************************************************
 
-    Byte srcW[(gulPanelW * gulPanelH)];
-    memset((srcW), 0xF0, (gulPanelW * gulPanelH));	//All white
-    IT8951_Cmd_LoadImageArea(srcW, (Sys_info->uiImageBufBase), 0, 0,
+    memset((src), 0xF0, (gulPanelW * gulPanelH));	//All white
+    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 0,
 			     gulPanelW, gulPanelH);
 
 
