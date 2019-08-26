@@ -20,17 +20,18 @@ int main(int argc, char *argv[])
     path = argv[1];		// arg1: sg path of device
     evpd = page_code = 0;
 
-    // 0x80: get system info
+    /*
+     * 0x80: get system info
+     */
     Sys_info = (SystemInfo *) malloc(sizeof(SystemInfo));
     IT8951_Cmd_SysInfo(Sys_info);
 
-    // set full white
-    //*******************************************************************************************
-
+    /* 
+     * set full white
+     */
     memset((src), 0xF0, (gulPanelW * gulPanelH));	//All white
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), 0, 0,
 			     gulPanelW, gulPanelH);
-
 
     for (int times = 0; times <= 99; times++) {
 	memset((src), 0xF0, (50 * 100));
@@ -39,7 +40,6 @@ int main(int argc, char *argv[])
 	int timea = 0, timeb = 0;
 	timea = times / 10;
 	timeb = times % 10;
-
 
 	if (timea == 0)
 	    int0(Sys_info, src, 800, 600);
@@ -86,18 +86,8 @@ int main(int argc, char *argv[])
 			       (Sys_info->uiImageBufBase), 1);
     }
 
-
-
-
     IT8951_Cmd_DisplayArea(0, 0, gulPanelW, gulPanelH, 2,
 			   (Sys_info->uiImageBufBase), 1);
-    //*********************************************************************************************/
-
-    // 0xA4: temperature
-    TempArg TempTest;
-    TempTest.ucSetTemp = 0;	// 0: read, 1: write
-    TempTest.ucTempVal = 126;	// set value if wanna write
-    IT8951_Cmd_SetTemp(TempTest);
 
     free(Sys_info);
     return EXIT_SUCCESS;

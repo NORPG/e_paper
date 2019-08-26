@@ -10,7 +10,7 @@ extern int gulPanelH;
 extern unsigned char sense_buffer[SENSE_LEN];
 extern unsigned char data_buffer[BLOCK_LEN * 256];
 
-void int1(SystemInfo * Sys_info, Byte * src,  int x, int y)
+void int1(SystemInfo * Sys_info, Byte * src, int x, int y)
 {
     memset((src), 0x00, (30 * 4));
     IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10,
@@ -403,8 +403,9 @@ void IT8951_Cmd_RegWrite(DWord regAddr, DWord * src)
     destroy_io_hdr(p_hdr);
 }
 
-void IT8951_Cmd_DisplayArea(DWord dpyX, DWord dpyY, DWord dpyW, DWord dpyH,
-			    DWord dpyMode, DWord memAddr, DWord enWaitRdy)
+void
+IT8951_Cmd_DisplayArea(DWord dpyX, DWord dpyY, DWord dpyW, DWord dpyH,
+		       DWord dpyMode, DWord memAddr, DWord enWaitRdy)
 {
 
     SG_IO_HDR *p_hdr = init_io_hdr();
@@ -443,8 +444,9 @@ void IT8951_Cmd_DisplayArea(DWord dpyX, DWord dpyY, DWord dpyW, DWord dpyH,
     destroy_io_hdr(p_hdr);
 }
 
-void IT8951_Cmd_LoadImageArea(Byte * srcImg, DWord memAddr, DWord ldX,
-			      DWord ldY, DWord ldW, DWord ldH)
+void
+IT8951_Cmd_LoadImageArea(Byte * srcImg, DWord memAddr, DWord ldX,
+			 DWord ldY, DWord ldW, DWord ldH)
 {
 
     printf("\nCommand: Load image\n");
