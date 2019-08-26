@@ -41,47 +41,9 @@ int main(int argc, char *argv[])
 	timea = times / 10;
 	timeb = times % 10;
 
-	if (timea == 0)
-	    int0(Sys_info, src, 800, 600);
-	else if (timea == 1)
-	    int1(Sys_info, src, 800, 600);
-	else if (timea == 2)
-	    int2(Sys_info, src, 800, 600);
-	else if (timea == 3)
-	    int3(Sys_info, src, 800, 600);
-	else if (timea == 4)
-	    int4(Sys_info, src, 800, 600);
-	else if (timea == 5)
-	    int5(Sys_info, src, 800, 600);
-	else if (timea == 6)
-	    int6(Sys_info, src, 800, 600);
-	else if (timea == 7)
-	    int7(Sys_info, src, 800, 600);
-	else if (timea == 8)
-	    int8(Sys_info, src, 800, 600);
-	else if (timea == 9)
-	    int9(Sys_info, src, 800, 600);
-
-	if (timeb == 0)
-	    int0(Sys_info, src, 800, 650);
-	else if (timeb == 1)
-	    int1(Sys_info, src, 800, 650);
-	else if (timeb == 2)
-	    int2(Sys_info, src, 800, 650);
-	else if (timeb == 3)
-	    int3(Sys_info, src, 800, 650);
-	else if (timeb == 4)
-	    int4(Sys_info, src, 800, 650);
-	else if (timeb == 5)
-	    int5(Sys_info, src, 800, 650);
-	else if (timeb == 6)
-	    int6(Sys_info, src, 800, 650);
-	else if (timeb == 7)
-	    int7(Sys_info, src, 800, 650);
-	else if (timeb == 8)
-	    int8(Sys_info, src, 800, 650);
-	else if (timeb == 9)
-	    int9(Sys_info, src, 800, 650);
+	dis_num(Sys_info, src, timea, 800, 600);
+	dis_num(Sys_info, src, timeb, 800, 650);
+	
 	IT8951_Cmd_DisplayArea(800, 600, 50, 100, 2,
 			       (Sys_info->uiImageBufBase), 1);
     }

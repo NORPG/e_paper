@@ -29,13 +29,4 @@ void IT8951_Cmd_DisplayArea(DWord, DWord, DWord, DWord, DWord, DWord,
 			    DWord);
 void IT8951_Cmd_LoadImageArea(Byte *, DWord, DWord, DWord, DWord, DWord);
 void IT8951_Cmd_SetTemp(TempArg);
-void int1(SystemInfo *, Byte *, int, int);
-void int2(SystemInfo *, Byte *, int, int);
-void int3(SystemInfo *, Byte *, int, int);
-void int4(SystemInfo *, Byte *, int, int);
-void int5(SystemInfo *, Byte *, int, int);
-void int6(SystemInfo *, Byte *, int, int);
-void int7(SystemInfo *, Byte *, int, int);
-void int8(SystemInfo *, Byte *, int, int);
-void int9(SystemInfo *, Byte *, int, int);
-void int0(SystemInfo *, Byte *, int, int);
+void dis_num(SystemInfo * Sys_info, Byte * src, int num, int x, int y);

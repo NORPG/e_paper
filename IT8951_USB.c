@@ -10,152 +10,138 @@ extern int gulPanelH;
 extern unsigned char sense_buffer[SENSE_LEN];
 extern unsigned char data_buffer[BLOCK_LEN * 256];
 
-void int1(SystemInfo * Sys_info, Byte * src, int x, int y)
+void dis_num(SystemInfo * Sys_info, Byte * src, int num, int x, int y)
 {
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10,
-			     y + 23, 30, 4);
-}
+    switch (num) {
+    case 0:
+	memset((src), 0x00, (4 * 26));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 26);	//_
 
-void int2(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
+	memset((src), 0x00, (4 * 26));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 26);	//_
 
-    memset((src), 0x00, (4 * 10));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 30, 4);	//|
 
-    memset((src), 0x00, (4 * 10));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 32, 30, 4);	//|
+	break;
+    case 1:
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10,
+				 y + 23, 30, 4);
+	break;
+    case 2:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 15, 4);	//|
+	memset((src), 0x00, (4 * 10));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
-}
+	memset((src), 0x00, (4 * 10));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-void int3(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 15, 4);	//|
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
+	break;
+    case 3:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (19 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
-}
+	memset((src), 0x00, (19 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
 
-void int4(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 36, 15, 4);	//|
+	break;
+    case 4:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-    memset((src), 0x00, (19 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 19, 4);	//|
+	memset((src), 0x00, (19 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 19, 4);	//|
 
-    memset((src), 0x00, (3 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 34, 4);	//|
-}
+	memset((src), 0x00, (3 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 34, 4);	//|
+	break;
+    case 5:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
 
-void int5(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (19 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
 
-    memset((src), 0x00, (19 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
+	break;
+    case 6:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
-}
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-void int6(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
+	memset((src), 0x00, (34 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 34, 4);	//|
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
+	break;
+    case 7:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (34 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 34, 4);	//|
+	memset((src), 0x00, (19 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
 
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 15, 4);	//|
-}
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
+	break;
+    case 8:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
 
-void int7(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
 
-    memset((src), 0x00, (19 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
 
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
-}
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 30, 4);	//|
 
-void int8(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 30);	//_
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
+	break;
+    case 9:
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 26);	//_
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 30);	//_
+	memset((src), 0x00, (4 * 30));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 26);	//-
 
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 30);	//-
+	memset((src), 0x00, (15 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
 
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 30, 4);	//|
-
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 36, 30, 4);	//|
-}
-
-void int9(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 26);	//_
-
-    memset((src), 0x00, (4 * 30));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 4, 26);	//-
-
-    memset((src), 0x00, (15 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 25, y + 10, 15, 4);	//|
-
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 32, 30, 4);	//|
-}
-
-void int0(SystemInfo * Sys_info, Byte * src, int x, int y)
-{
-    memset((src), 0x00, (4 * 26));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 4, 26);	//_
-
-    memset((src), 0x00, (4 * 26));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 40, y + 10, 4, 26);	//_
-
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 10, 30, 4);	//|
-
-    memset((src), 0x00, (30 * 4));
-    IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 32, 30, 4);	//|
+	memset((src), 0x00, (30 * 4));
+	IT8951_Cmd_LoadImageArea(src, (Sys_info->uiImageBufBase), x + 10, y + 32, 30, 4);	//|
+	break;
+    }
 }
 
 void show_sense_buffer(struct sg_io_hdr *hdr)
