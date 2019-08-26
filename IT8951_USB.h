@@ -1,3 +1,7 @@
+#ifndef IT8951_USB_H
+
+#define IT8951_USB_H
+
 #include "IT8951_CMD.h"
 
 #ifndef Include_Main
@@ -30,3 +34,4 @@ void IT8951_Cmd_DisplayArea(DWord, DWord, DWord, DWord, DWord, DWord,
 void IT8951_Cmd_LoadImageArea(Byte *, DWord, DWord, DWord, DWord, DWord);
 void IT8951_Cmd_SetTemp(TempArg);
 void dis_num(SystemInfo * Sys_info, Byte * src, int num, int x, int y);
+#endif
