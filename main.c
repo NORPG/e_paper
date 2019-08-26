@@ -7,7 +7,6 @@ unsigned char data_buffer[BLOCK_LEN * 256];
 
 DWord gulPanelW, gulPanelH;
 
-Byte src[(1600 * 1200)];
 
 char *path;
 int evpd, page_code;
@@ -15,6 +14,7 @@ int evpd, page_code;
 int main(int argc, char *argv[])
 {
 
+    Byte src[(1600 * 1200)];
     SystemInfo *Sys_info;	// SystemInfo structure
 
     path = argv[1];		// arg1: sg path of device
@@ -43,7 +43,7 @@ int main(int argc, char *argv[])
 
 	dis_num(Sys_info, src, timea, 800, 600);
 	dis_num(Sys_info, src, timeb, 800, 650);
-	
+
 	IT8951_Cmd_DisplayArea(800, 600, 50, 100, 2,
 			       (Sys_info->uiImageBufBase), 1);
     }
